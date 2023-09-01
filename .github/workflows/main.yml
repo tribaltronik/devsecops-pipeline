@@ -9,11 +9,6 @@ jobs:
     name: Build
     runs-on: ubuntu-20.04
 
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x, 18.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -21,7 +16,7 @@ jobs:
     - name: SCA-retireJS
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: 18.x
         cache: 'npm'
     - run: npm install -g retire
     - run: require --severity high --outputformat json --outputpath retirejs_output.json
