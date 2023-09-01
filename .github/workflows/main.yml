@@ -12,6 +12,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    - name: SCA-retireJS
+      uses: node:alpine3.10
+    - run: npm install -g retire
+    - run: require --severity high --outputformat json --outputpath retirejs_output.json
+
     - name: Run Trivy vulnerability scanner in fs mode
       uses: aquasecurity/trivy-action@master
       with:
@@ -24,20 +29,10 @@ jobs:
 
   test:
     name: test
+    needs: Build # run only after build
     runs-on: ubuntu-20.04
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Install OWASP ZAP
-      run: |
-        wget https://github.com/zaproxy/zaproxy/releases/download/v2.11.0/ZAP_2_11_0_unix.sh
-        chmod +x ZAP_2_11_0_unix.sh
-        ./ZAP_2_11_0_unix.sh -daemon -port 8080
-        sleep 10 # Give ZAP time to start
-    
-    - name: Run OWASP ZAP security scan
-      run: |
-        export ZAP_PATH=$(which zap.sh)
-        $ZAP_PATH -quickurl http://localhost:8080 -cmd -quickout /zap/report.html
 
