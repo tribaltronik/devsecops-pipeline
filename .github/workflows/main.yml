@@ -19,6 +19,7 @@ jobs:
       with:
         node-version: '18'
     - run: npm install -g retire
+    - run: npm fund
     - run: require --severity high --outputformat json --outputpath retirejs_output.json
 
     - name: Run Trivy vulnerability scanner in fs mode
