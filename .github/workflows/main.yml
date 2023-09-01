@@ -18,8 +18,9 @@ jobs:
       with:
         node-version: 18.x
     - run: npm install -g retire
-    - run: require --severity high --outputformat json --outputpath retirejs_output.json
-
+    - name: Run build script
+      run: require --severity high --outputformat json --outputpath retirejs_output.json
+      shell: bash
     - name: Run Trivy vulnerability scanner in fs mode
       uses: aquasecurity/trivy-action@master
       with:
