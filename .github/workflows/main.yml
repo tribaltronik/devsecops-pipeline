@@ -16,5 +16,28 @@ jobs:
       uses: aquasecurity/trivy-action@master
       with:
         scan-type: 'fs'
-        scan-ref: '.'
-        trivy-config: trivy.yaml
+        format: 'table'
+        exit-code: '1'
+        ignore-unfixed: true
+        vuln-type: 'os,library'
+        severity: 'CRITICAL,HIGH'
+
+  test:
+    name: test
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install OWASP ZAP
+      run: |
+        wget https://github.com/zaproxy/zaproxy/releases/download/v2.11.0/ZAP_2_11_0_unix.sh
+        chmod +x ZAP_2_11_0_unix.sh
+        ./ZAP_2_11_0_unix.sh -daemon -port 8080
+        sleep 10 # Give ZAP time to start
+    
+    - name: Run OWASP ZAP security scan
+      run: |
+        export ZAP_PATH=$(which zap.sh)
+        $ZAP_PATH -quickurl http://localhost:8080 -cmd -quickout /zap/report.html
+
