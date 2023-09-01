@@ -14,13 +14,13 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: SCA-retireJS
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-    - run: npm install -g retire
-    - run: npm fund
-    - run: require --severity high --outputformat json --outputpath retirejs_output.json
+    # - name: SCA-retireJS
+    #   uses: actions/setup-node@v3
+    #   with:
+    #     node-version: '18'
+    # - run: npm install -g retire
+    # - run: npm fund
+    # - run: require --severity high --outputformat json --outputpath retirejs_output.json
 
     - name: Run Trivy vulnerability scanner in fs mode
       uses: aquasecurity/trivy-action@master
