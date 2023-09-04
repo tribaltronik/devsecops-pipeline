@@ -3,6 +3,10 @@ DevSecOps Pipeline
 
 https://github.com/ShiftLeftSecurity/shiftleft-python-example
 
+## Run Github actions locally
+https://github.com/nektos/act
+
+
 # Build and run 
 
 > docker image build -t api_flask .

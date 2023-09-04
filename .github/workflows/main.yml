@@ -52,11 +52,17 @@ jobs:
 
   test:
     name: test
-    needs: Build # run only after build
+    needs: build # run only after build
     runs-on: ubuntu-20.04
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+
+
+    - name: Bandit Check
+      uses: jpetrucciani/bandit-check@main
+      with:
+        path: './src/app'
 
     - name: Run Trivy vulnerability scanner in fs mode
       uses: aquasecurity/trivy-action@master
