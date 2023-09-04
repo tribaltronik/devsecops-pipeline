@@ -18,6 +18,7 @@ jobs:
       uses: actions/setup-python@v4
 
     - name: Install dependencies
+      working-directory: ./src/flask_webgoat
       run: |
         python -m pip install --upgrade pip
         pip install ruff pytest
