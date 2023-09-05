@@ -1,8 +1,8 @@
-import os
+#import os
 import sqlite3
 from pathlib import Path
 
-from flask import Flask, g
+from flask import Flask
 
 DB_FILENAME = "database.db"
 

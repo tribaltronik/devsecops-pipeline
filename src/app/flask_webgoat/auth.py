@@ -16,7 +16,8 @@ def login():
 
     # vulnerability: SQL Injection
     query = (
-        "SELECT id, username, access_level FROM user WHERE username = '%s' AND password = '%s'"
+        "SELECT id, username, access_level FROM user \
+        WHERE username = '%s' AND password = '%s'"
         % (username, password)
     )
     result = query_db(query, [], True)
@@ -39,7 +40,8 @@ def login_and_redirect():
             400,
         )
 
-    query = "SELECT id, username, access_level FROM user WHERE username = ? AND password = ?"
+    query = "SELECT id, username, access_level FROM user \
+        WHERE username = ? AND password = ?"
     result = query_db(query, (username, password), True)
     if result is None:
         # vulnerability: Open Redirect

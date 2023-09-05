@@ -23,7 +23,8 @@ def create_user():
         return (
             jsonify(
                 {
-                    "error": "username, password and access_level parameters have to be provided"
+                    "error": \
+                    "username, password and access_level parameters have to be provided"
                 }
             ),
             400,
