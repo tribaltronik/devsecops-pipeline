@@ -19,4 +19,11 @@ docker run --rm -p 8000:5000 -d api_flask
 ## SAST
 
 - Trivy
+https://github.com/aquasecurity/trivy
 
+- Bandit
+https://github.com/PyCQA/bandit
+[![security: bandit](https://img.shields.io/badge/security-bandit-yellow.svg)](https://github.com/PyCQA/bandit)
+
+- Trufflehog
+https://github.com/trufflesecurity/trufflehog

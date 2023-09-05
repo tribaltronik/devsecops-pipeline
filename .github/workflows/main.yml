@@ -40,17 +40,6 @@ jobs:
     # - run: npm fund
     # - run: require --severity high --outputformat json --outputpath retirejs_output.json
 
-    - name: Run Trivy vulnerability scanner in fs mode
-      uses: aquasecurity/trivy-action@master
-      continue-on-error: true
-      with:
-        scan-type: 'fs'
-        format: 'table'
-        exit-code: '1'
-        ignore-unfixed: true
-        vuln-type: 'os,library'
-        severity: 'CRITICAL,HIGH'
-
   test:
     name: test
     needs: build # run only after build
@@ -72,4 +61,11 @@ jobs:
       with:
         scan-type: 'fs'
         scan-ref: './src/app'
+        format: 'table'
+        exit-code: '1'
+        ignore-unfixed: true
+        vuln-type: 'os,library'
+        severity: 'CRITICAL,HIGH'
 
+    - name: Trufflehog scan secrets 
+      uses: edplato/trufflehog-actions-scan@master
