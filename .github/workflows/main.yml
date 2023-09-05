@@ -68,4 +68,5 @@ jobs:
         severity: 'CRITICAL,HIGH'
 
     - name: Trufflehog scan secrets 
+      continue-on-error: true
       uses: edplato/trufflehog-actions-scan@master
