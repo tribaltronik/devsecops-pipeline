@@ -9,6 +9,22 @@ https://github.com/nektos/act
 ```shell 
 act -P ubuntu-latest=nektos/act-environments-ubuntu:18.04
 ```
+
+## Guthub actions runner
+
+https://testdriven.io/blog/github-actions-docker/
+
+```shell 
+docker build --tag github_runner .
+
+$ docker run \
+  --detach \
+  --env ORGANIZATION=<YOUR-GITHUB-ORGANIZATION> \
+  --env ACCESS_TOKEN=<YOUR-GITHUB-ACCESS-TOKEN> \
+  --name runner \
+  github_runner
+```
+
 # Build and run 
 
 ```shell 
